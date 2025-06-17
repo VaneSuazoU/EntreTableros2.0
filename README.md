@@ -1,5 +1,4 @@
-# Guardar archivo .md
-readme_content = """# 🌌 EntreTableros 2.0 - Tienda de Juegos de Mesa
+# 🌌 EntreTableros 2.0 - Tienda de Juegos de Mesa
 
 **EntreTableros** es una tienda ficticia de juegos de mesa con un diseño galáctico, moderno y amigable. Esta versión 2.0 fue desarrollada con **Angular**, integrando funcionalidades interactivas como registro de usuarios, edición de perfil, categorización dinámica de juegos y una sección social donde los usuarios pueden acumular puntos de participación.
 
