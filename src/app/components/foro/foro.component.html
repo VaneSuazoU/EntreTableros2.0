@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Tablero Social</h2>
+
+  <div *ngIf="usuarioActual; else accesoDenegado">
+    <form (ngSubmit)="publicar()" class="mb-4">
+      <div class="mb-3">
+        <label for="mensaje" class="form-label">Escribe tu mensaje</label>
+        <textarea id="mensaje" class="form-control" [(ngModel)]="mensaje" name="mensaje" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Publicar</button>
+    </form>
+
+    <div *ngIf="publicaciones.length === 0" class="alert alert-info">
+      Aún no hay publicaciones. ¡Sé la primera en participar!
+    </div>
+
+    <div *ngFor="let pub of publicaciones" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ pub.username }}</h5>
+        <p class="card-text">{{ pub.content }}</p>
+        <p class="card-text">
+          <small class="text-muted">{{ pub.date | date:'short' }}</small>
+        </p>
+        <button class="btn btn-outline-danger btn-sm" (click)="darLike(pub)">
+          ❤️ Me gusta ({{ pub.likes || 0 }})
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #accesoDenegado>
+    <div class="alert alert-danger text-center">
+      Debes iniciar sesión para participar en el foro.
+    </div>
+  </ng-template>
+</div>

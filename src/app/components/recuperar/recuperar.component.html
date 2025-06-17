@@ -1,0 +1,24 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6">
+    <h2 class="mb-4 text-center">Recuperar cuenta</h2>
+    <form #formulario="ngForm" (ngSubmit)="recuperarCuenta()" novalidate>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo electrónico</label>
+        <input
+          type="email"
+          id="correo"
+          name="correo"
+          [(ngModel)]="correo"
+          class="form-control"
+          required
+        />
+        <div class="form-text text-danger" *ngIf="formulario.submitted && !formulario.controls['correo']?.valid">
+          Ingresa un correo válido.
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Enviar enlace</button>
+      </div>
+    </form>
+  </div>
+</div>

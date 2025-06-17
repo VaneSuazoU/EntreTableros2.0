@@ -1,0 +1,26 @@
+<div class="text-center">
+  <h2 class="mb-4">Juegos {{ categoria | titlecase }}</h2>
+</div>
+
+<div class="categoria-container">
+  <div class="juegos-grid">
+    <div class="juego-card" *ngFor="let juego of juegos">
+      <img [src]="'' + juego.imagen" [alt]="juego.nombre" />
+      <h3>{{ juego.nombre }}</h3>
+      <p>{{ juego.descripcion }}</p>
+      <p><strong>Precio: </strong> {{ juego.precio | currency: 'CLP' : 'symbol-narrow' }}</p>
+      <div class="juego-info">
+        <span>+{{ juego.edad }} Edad</span>
+        <span>{{ juego.duracion }} Min</span>
+        <span>{{ juego.jugadores }} Jugadores</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-volver" (click)="volver()">← Volver</button>
+</div>
+
+
+<div *ngIf="juegos.length === 0" class="alert alert-warning text-center mt-4">
+  No hay juegos disponibles en esta categoría.
+</div>

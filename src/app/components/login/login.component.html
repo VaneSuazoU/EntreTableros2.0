@@ -1,0 +1,19 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6">
+    <h2 class="mb-4 text-center">Iniciar Sesión</h2>
+    <form>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo electrónico</label>
+        <input type="email" id="correo" class="form-control" [(ngModel)]="correo" name="correo" required />
+      </div>
+      <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña</label>
+        <input type="password" id="contrasena" class="form-control" [(ngModel)]="contrasena" name="contrasena" required />
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <button type="button" class="btn btn-primary" (click)="iniciarSesion()">Ingresar</button>
+        <a routerLink="/recuperar" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+      </div>
+    </form>
+  </div>
+</div>

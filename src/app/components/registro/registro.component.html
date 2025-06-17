@@ -1,0 +1,105 @@
+<div class="container mt-5">
+  <form #registroForm="ngForm" (ngSubmit)="registrar(registroForm)" novalidate>
+    <div class="row">
+
+      <!-- Columna izquierda -->
+      <div class="col-md-6">
+
+        <div class="mb-3">
+          <label>Nombre completo</label>
+          <input type="text" class="form-control"
+            name="nombre"
+            [(ngModel)]="usuario.nombre"
+            required />
+          <div *ngIf="registroForm.submitted && !usuario.nombre" class="text-danger">
+            Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Correo electrónico</label>
+          <input type="email" class="form-control"
+            name="email"
+            [(ngModel)]="usuario.email"
+            required
+            email />
+          <div *ngIf="registroForm.submitted && registroForm.controls['email']?.invalid" class="text-danger">
+            Ingrese un email válido.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Contraseña</label>
+          <div class="input-group">
+            <input [type]="verPassword ? 'text' : 'password'"
+              class="form-control"
+              name="password"
+              [(ngModel)]="usuario.password"
+              required />
+            <button type="button" class="btn btn-outline-secondary" (click)="verPassword = !verPassword">
+              <i class="fa fa-eye"></i>
+            </button>
+          </div>
+          <div *ngIf="registroForm.submitted && !validarPassword(usuario.password)" class="text-danger">
+            Contraseña entre 6–18 caracteres, con al menos una mayúscula y un número.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Dirección de despacho (opcional)</label>
+          <input type="text" class="form-control" name="direccion" [(ngModel)]="usuario.direccion" />
+        </div>
+
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="col-md-6">
+
+        <div class="mb-3">
+          <label>Nombre de usuario</label>
+          <input type="text" class="form-control"
+            name="username"
+            [(ngModel)]="usuario.username"
+            required />
+          <div *ngIf="registroForm.submitted && !usuario.username" class="text-danger">
+            Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Fecha de nacimiento</label>
+          <input type="date" class="form-control"
+            name="nacimiento"
+            [(ngModel)]="usuario.nacimiento"
+            required />
+          <div *ngIf="registroForm.submitted && !validarEdad(usuario.nacimiento)" class="text-danger">
+            Debe tener al menos 13 años.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Repetir contraseña</label>
+          <div class="input-group">
+            <input [type]="verRepeat ? 'text' : 'password'"
+              class="form-control"
+              name="repetir"
+              [(ngModel)]="usuario.repetir"
+              required />
+            <button type="button" class="btn btn-outline-secondary" (click)="verRepeat = !verRepeat">
+              <i class="fa fa-eye"></i>
+            </button>
+          </div>
+          <div *ngIf="registroForm.submitted && usuario.password !== usuario.repetir" class="text-danger">
+            Las contraseñas no coinciden.
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="submit" class="btn btn-primary">Registrar</button>
+          <button type="button" class="btn btn-secondary" (click)="limpiar()">Limpiar</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

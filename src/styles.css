@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-principal: #5062fa;
+  --color-secundario: #3d299b;
+  --color-acento: #a855f7;
+  --color-contraste: #2dd4bf;
+  --color-fondo: #ede9fe;
+  --color-texto: #ffffff;
+
+  --fuente-titulo: "Orbitron", sans-serif;
+  --fuente-general: "Inter", sans-serif;
+
+  --sombra: 0 0 15px rgba(80, 98, 250, 0.3);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: url('/images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  color: white;
+}
+
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  padding: 1rem 2rem;
+}

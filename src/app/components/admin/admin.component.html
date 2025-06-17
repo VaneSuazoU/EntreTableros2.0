@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Panel de Administración</h2>
+  <p class="text-center">Aquí podrás gestionar usuarios registrados y ver métricas del sitio.</p>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Usuarios Registrados</h5>
+      <ul class="list-group" *ngIf="usuarios.length > 0">
+        <li class="list-group-item" *ngFor="let u of usuarios">
+          {{ u.nombre }} - {{ u.correo }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h5>Métricas de ventas</h5>
+      <p>Próximamente...</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+/* Contenedor principal */
+.container-categorias {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Título */
+.container-categorias h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-family: "Orbitron", sans-serif;
+  color: white;
+}
+
+/* Tarjetas de juegos */
+.juegos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Cada tarjeta */
+.juego-card {
+  background: #4f46e5;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 15px rgba(80, 98, 250, 0.5);
+  width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.juego-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(173, 85, 247, 0.7);
+}
+
+/* Imagen adaptada */
+.juego-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+}
+
+/* Nombre del juego */
+.juego-card h3 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+/* Precio destacado */
+.juego-card .precio {
+  color: #2dd4bf;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Botón "Ver más" */
+.juego-card button {
+  margin-top: 1rem;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.juego-card button:hover {
+  background-color: #2dd4bf;
+  color: black;
+}
+
+/* Botón Volver */
+.btn-volver {
+  margin: 2rem auto 0;
+  display: inline-block;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: #a855f7;
+  border-color: #a855f7;
+  color: white;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .juegos-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .juego-card {
+    width: 90%;
+  }
+
+  .container-categorias h2 {
+    font-size: 2rem;
+  }
+}
