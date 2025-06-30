@@ -14,33 +14,33 @@
 
 ## 🧩 Estructura del Proyecto
 
-- \`src/app/components\`: Componentes modulares como \`navbar\`, \`category\`, \`login\`, \`register\`, \`profile\`, \`social-board\`, etc.
-- \`assets/data/games.json\`: Base de datos simulada con los juegos.
-- \`styles\`: Estilos generales del sitio y estilos específicos por componente.
-- \`app-routing.module.ts\`: Configuración de rutas.
+- `src/app/components`: Componentes modulares como `navbar`, `category`, `login`, `register`, `profile`, `social-board`, etc.
+- `assets/data/games.json`: Base de datos simulada con los juegos.
+- `styles`: Estilos generales del sitio y estilos específicos por componente.
+- `app-routing.module.ts`: Configuración de rutas.
 
 ## 🛠️ Instalación y ejecución local
 
 1. Clona el repositorio:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/tu-usuario/entre-tableros.git
    cd entre-tableros
-   \`\`\`
+   ```
 
 2. Instala las dependencias:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 3. Inicia el servidor de desarrollo:
-   \`\`\`bash
+   ```bash
    ng serve
-   \`\`\`
+   ```
 
 4. Accede a la aplicación desde el navegador:
-   \`\`\`
+   ```
    http://localhost:4200/
-   \`\`\`
+   ```
 
 ## 📦 Funcionalidades principales
 
@@ -55,9 +55,9 @@
 
 Los juegos se cargan desde un archivo JSON local ubicado en:
 
-\`\`\`
+```
 public/games/games.json
-\`\`\`
+```
 
 ## ✨ Versión 2.0 - ¿Qué hay de nuevo?
 
