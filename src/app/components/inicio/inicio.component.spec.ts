@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InicioComponent } from './inicio.component';
 
 describe('InicioComponent', () => {
@@ -9,15 +8,14 @@ describe('InicioComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InicioComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InicioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debería crear el componente Inicio', () => {
     expect(component).toBeTruthy();
   });
 });

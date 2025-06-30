@@ -8,6 +8,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { ForoComponent } from './components/foro/foro.component';
 import { RecuperarComponent } from './components/recuperar/recuperar.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -15,8 +16,8 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'perfil', component: PerfilComponent },
-  { path: 'foro', component: ForoComponent },
+  { path: 'foro', component: ForoComponent, canActivate: [authGuard] },
   { path: 'recuperar', component: RecuperarComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];

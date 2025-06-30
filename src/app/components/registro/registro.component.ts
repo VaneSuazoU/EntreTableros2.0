@@ -1,31 +1,36 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-  standalone: true,
   selector: 'app-registro',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css'],
-  imports: [CommonModule, FormsModule]
+  styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
-  usuario = {
+  usuario: any = {
     nombre: '',
-    username: '',
     email: '',
     password: '',
     repetir: '',
-    nacimiento: '',
-    direccion: ''
+    direccion: '',
+    username: '',
+    nacimiento: ''
   };
 
   verPassword = false;
   verRepeat = false;
 
-  registrar(form: NgForm): void {
-    if (!form.valid || !this.validarEdad(this.usuario.nacimiento) || !this.validarPassword(this.usuario.password)) {
-      alert('Por favor revisa los campos con errores.');
+  registrar(form: any) {
+    if (!form.valid) {
+      alert('Formulario incompleto o con errores.');
+      return;
+    }
+
+    if (!this.passwordValida(this.usuario.password)) {
+      alert('La contraseña no cumple con los requisitos de seguridad.');
       return;
     }
 
@@ -34,47 +39,38 @@ export class RegistroComponent {
       return;
     }
 
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-
-    const existe = usuarios.some((u: any) => u.email === this.usuario.email || u.username === this.usuario.username);
-    if (existe) {
-      alert('Ya existe un usuario con ese correo o nombre de usuario.');
+    if (!this.validarEdad(this.usuario.nacimiento)) {
+      alert('Debes tener al menos 13 años.');
       return;
     }
 
-    const { nombre, username, email, password, nacimiento, direccion } = this.usuario;
-    const nuevoUsuario = { nombre, username, email, password, nacimiento, direccion };
-
-
-    usuarios.push(nuevoUsuario);
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    console.log('Usuario registrado:', this.usuario);
     alert('¡Registro exitoso!');
     this.limpiar();
   }
 
-  limpiar(): void {
-    this.usuario = {
-      nombre: '',
-      username: '',
-      email: '',
-      password: '',
-      repetir: '',
-      nacimiento: '',
-      direccion: ''
-    };
-    this.verPassword = false;
-    this.verRepeat = false;
+  passwordValida(password: string): boolean {
+    const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+    return pattern.test(password);
   }
 
   validarEdad(fecha: string): boolean {
     const nacimiento = new Date(fecha);
     const hoy = new Date();
     const edad = hoy.getFullYear() - nacimiento.getFullYear();
-    return edad > 13 || (edad === 13 && hoy >= new Date(nacimiento.setFullYear(hoy.getFullYear())));
+    const mes = hoy.getMonth() - nacimiento.getMonth();
+    return edad > 13 || (edad === 13 && mes >= 0);
   }
 
-  validarPassword(pw: string): boolean {
-    const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,18}$/;
-    return regex.test(pw);
+  limpiar() {
+    this.usuario = {
+      nombre: '',
+      email: '',
+      password: '',
+      repetir: '',
+      direccion: '',
+      username: '',
+      nacimiento: ''
+    };
   }
 }

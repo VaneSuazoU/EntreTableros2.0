@@ -1,23 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { PerfilComponent } from './perfil.component';
 
 describe('PerfilComponent', () => {
-  let component: PerfilComponent;
-  let fixture: ComponentFixture<PerfilComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PerfilComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(PerfilComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('debería renderizar información del perfil', async () => {
+    await render(PerfilComponent);
+    expect(screen.getByText(/información del perfil/i)).toBeTruthy();
   });
 });

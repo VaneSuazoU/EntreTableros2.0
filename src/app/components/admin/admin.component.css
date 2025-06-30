@@ -1,0 +1,74 @@
+.admin-panel {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #fff;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 5px;
+}
+
+.subtitulo {
+  text-align: center;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #ccc;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  background-color: #4f46e5; /* Azul secundario */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tabs button.active,
+.tabs button:hover {
+  background-color: #2dd4bf; /* Contraste vibrante */
+  color: #000;
+  font-weight: bold;
+}
+
+.panel-card {
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+  color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  font-size: 1.1rem;
+}
+
+.panel-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.panel-card ul {
+  padding-left: 20px;
+}
+
+.panel-card p,
+.panel-card li {
+  margin: 6px 0;
+}
+
+.panel-card strong {
+  color: #2dd4bf;
+}

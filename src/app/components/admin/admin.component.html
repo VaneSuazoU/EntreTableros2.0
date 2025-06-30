@@ -1,20 +1,56 @@
-<div class="container mt-5">
-  <h2 class="mb-4 text-center">Panel de Administración</h2>
-  <p class="text-center">Aquí podrás gestionar usuarios registrados y ver métricas del sitio.</p>
+<div class="admin-panel">
+  <h1 class="titulo">Panel de Administración</h1>
+  <p class="subtitulo">
+    <em>*Este panel muestra información simulada con fines demostrativos. Las acciones no tienen funcionalidad real.</em>
+  </p>
 
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Usuarios Registrados</h5>
-      <ul class="list-group" *ngIf="usuarios.length > 0">
-        <li class="list-group-item" *ngFor="let u of usuarios">
-          {{ u.nombre }} - {{ u.correo }}
-        </li>
+  <!-- Pestañas -->
+  <div class="tabs">
+    <button [class.active]="seccionActiva === 'juegos'" (click)="seccionActiva = 'juegos'">Juegos</button>
+    <button [class.active]="seccionActiva === 'usuarios'" (click)="seccionActiva = 'usuarios'">Usuarios</button>
+    <button [class.active]="seccionActiva === 'foro'" (click)="seccionActiva = 'foro'">Foro</button>
+    <button [class.active]="seccionActiva === 'pedidos'" (click)="seccionActiva = 'pedidos'">Pedidos</button>
+    <button [class.active]="seccionActiva === 'estadisticas'" (click)="seccionActiva = 'estadisticas'">Estadísticas</button>
+  </div>
+
+  <!-- Contenido -->
+  <div class="panel-card">
+    <div *ngIf="seccionActiva === 'juegos'">
+      <h3>Gestión de Juegos</h3>
+      <ul>
+        <li>Catan - $24.990</li>
+        <li>Uno - $5.990</li>
+        <li>Dixit - $21.990</li>
+      </ul>
+      <p><strong>Acciones simuladas:</strong> Editar, Eliminar, Agregar nuevo juego.</p>
+    </div>
+
+    <div *ngIf="seccionActiva === 'usuarios'">
+      <h3>Gestión de Usuarios</h3>
+      <p>Total usuarios registrados: 52</p>
+      <ul>
+        <li>María López (maria.lopez&#64;entretableros.cl)</li>
+        <li>Pedro González (pedro.gonzalez&#64;entretableros.cl)</li>
       </ul>
     </div>
 
-    <div class="col-md-6">
-      <h5>Métricas de ventas</h5>
-      <p>Próximamente...</p>
+    <div *ngIf="seccionActiva === 'foro'">
+      <h3>Moderación del Foro</h3>
+      <p>Publicaciones pendientes: 3</p>
+      <p><strong>Acciones simuladas:</strong> Aprobar, Eliminar, Reportar.</p>
+    </div>
+
+    <div *ngIf="seccionActiva === 'pedidos'">
+      <h3>Revisión de Pedidos</h3>
+      <p>Pedidos recientes: 12</p>
+      <p><strong>Acciones simuladas:</strong> Ver detalles, Cambiar estado, Reembolsar.</p>
+    </div>
+
+    <div *ngIf="seccionActiva === 'estadisticas'">
+      <h3>Estadísticas</h3>
+      <p>Ventas del mes: $1.230.000</p>
+      <p>Usuarios activos: 37</p>
+      <p><strong>Acciones simuladas:</strong> Exportar informe, Cambiar filtros.</p>
     </div>
   </div>
 </div>

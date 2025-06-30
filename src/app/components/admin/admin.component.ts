@@ -3,28 +3,30 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-  standalone: true,
   selector: 'app-admin',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
-  imports: [CommonModule]
+  styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  usuarios: any[] = [];
+  usuario: any = null;
+  accesoPermitido: boolean = false;
+  seccionActiva: string = 'juegos';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const usuario = localStorage.getItem('usuarioActual');
-
-    // 🚨 Si no es admin, redirige
-    if (usuario !== 'admin@entre.cl') {
+    const sesion = localStorage.getItem('usuario');
+    if (sesion) {
+      try {
+        this.usuario = JSON.parse(sesion);
+        this.accesoPermitido = this.usuario.rol === 'admin';
+      } catch {
+        this.router.navigate(['/']);
+      }
+    } else {
       this.router.navigate(['/']);
-      return;
     }
-
-    // Cargar usuarios si es admin
-    const data = localStorage.getItem('usuarios');
-    this.usuarios = data ? JSON.parse(data) : [];
   }
 }

@@ -40,8 +40,11 @@
               <i class="fa fa-eye"></i>
             </button>
           </div>
-          <div *ngIf="registroForm.submitted && !validarPassword(usuario.password)" class="text-danger">
-            Contraseña entre 6–18 caracteres, con al menos una mayúscula y un número.
+          <small class="text-muted">
+            Mínimo 8 caracteres, incluyendo una mayúscula, un número y un símbolo.
+          </small>
+          <div *ngIf="registroForm.submitted && !passwordValida(usuario.password)" class="text-danger">
+            La contraseña no cumple con los requisitos de seguridad.
           </div>
         </div>
 
