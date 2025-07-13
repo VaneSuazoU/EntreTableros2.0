@@ -1,75 +1,118 @@
 # 🌌 EntreTableros 2.0 - Tienda de Juegos de Mesa
 
-**EntreTableros** es una tienda ficticia de juegos de mesa con un diseño galáctico, moderno y amigable. Esta versión 2.0 fue desarrollada con **Angular**, integrando funcionalidades interactivas como registro de usuarios, edición de perfil, categorización dinámica de juegos y una sección social donde los usuarios pueden acumular puntos de participación.
+**EntreTableros** es una tienda ficticia de juegos de mesa con un diseño galáctico, moderno y amigable.  
+Esta versión 2.0 fue desarrollada con **Angular**, integrando funcionalidades interactivas como registro de usuarios, edición de perfil, categorización dinámica de juegos, y una sección social donde los usuarios pueden acumular puntos de participación.
+
+---
 
 ## 🚀 Tecnologías Utilizadas
 
 - Angular 16+
 - TypeScript
 - Bootstrap 5
-- HTML5 & CSS3 (con estilos separados por componente)
-- JSON para la carga dinámica de productos
-- LocalStorage para persistencia de sesión
-- [Angular CLI](https://angular.dev/tools/cli)
+- HTML5 & CSS3 (estilos separados por componente)
+- JSON publicado en GitHub Pages como API simulada
+- LocalStorage para gestión de sesión
+- Docker para contenerización
+- Jasmine & Karma para pruebas unitarias
+
+---
 
 ## 🧩 Estructura del Proyecto
 
-- `src/app/components`: Componentes modulares como `navbar`, `category`, `login`, `register`, `profile`, `social-board`, etc.
-- `assets/data/games.json`: Base de datos simulada con los juegos.
-- `styles`: Estilos generales del sitio y estilos específicos por componente.
-- `app-routing.module.ts`: Configuración de rutas.
+- `src/app/components`: Componentes como `navbar`, `categoria`, `login`, `register`, `perfil`, `foro`, etc.
+- `public/games.json`: Fuente de datos simulada (cargada desde GitHub Pages)
+- `styles.css`: Estilos generales del sitio
+- `Dockerfile`: Script para construir la app y ejecutarla vía NGINX
+- `app.routes.ts`: Configuración de rutas con protección por roles
 
-## 🛠️ Instalación y ejecución local
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/entre-tableros.git
-   cd entre-tableros
-   ```
-
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-
-3. Inicia el servidor de desarrollo:
-   ```bash
-   ng serve
-   ```
-
-4. Accede a la aplicación desde el navegador:
-   ```
-   http://localhost:4200/
-   ```
+---
 
 ## 📦 Funcionalidades principales
 
-- 🧑 Registro e inicio de sesión con validaciones.
-- ✍️ Edición de perfil con campos como nombre, dirección y fecha de nacimiento.
-- 🎲 Visualización de juegos por categorías: Familiares, Estratégicos, Infantiles y Cartas.
-- 🔎 Filtro por categoría y detalles de cada juego.
-- 🗨️ Foro social tipo "Tablero Social".
-- 🎁 Sistema de puntos y beneficios para usuarios activos.
+- 🧑 Registro e inicio de sesión con validaciones básicas
+- 👤 Edición de perfil con campos personales
+- 🎲 Visualización de juegos por categorías: Familiares, Estratégicos, Infantiles y Party Games
+- ✏️ Simulación de creación y edición de juegos para usuarios con rol `admin`
+- 🗨️ Foro social con sistema de participación (puntos)
+- 🔐 Control de acceso y rutas protegidas
+- 🔍 Navegación dinámica con parámetros en rutas
 
-## 📁 Datos simulados
+---
 
-Los juegos se cargan desde un archivo JSON local ubicado en:
+## 📁 Datos simulados (API)
 
+Los juegos se obtienen desde un archivo JSON publicado como API en GitHub Pages:  
+🔗 [https://vanesuazou.github.io/EntreTableros_API/data.json](https://vanesuazou.github.io/EntreTableros_API/data.json)
+
+---
+
+## 🧪 Pruebas
+
+Se implementó una prueba funcional real para el componente `LoginComponent`, validando el flujo de autenticación con credenciales válidas y redirección.  
+Las pruebas se ejecutan con:
+
+```bash
+ng test
 ```
-public/games/games.json
+
+---
+
+## 🐳 Dockerización
+
+La app puede ejecutarse en un contenedor Docker con NGINX como servidor web.
+
+### 📄 Dockerfile
+
+```Dockerfile
+# Etapa 1: Build Angular
+FROM node:18-alpine as build
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+# Etapa 2: Servidor NGINX
+FROM nginx:alpine
+COPY --from=build /app/dist/entre-tableros /usr/share/nginx/html
 ```
 
-## ✨ Versión 2.0 - ¿Qué hay de nuevo?
+### ▶️ Ejecución
 
-Esta es la **versión 2.0** de *EntreTableros*, completamente reestructurada utilizando el framework **Angular**. A diferencia de la primera versión (desarrollada con HTML, CSS y JavaScript puro), esta nueva implementación permite una mayor escalabilidad, reutilización de componentes y navegación fluida gracias al uso de *routing* y *binding* de datos.
+```bash
+docker build -t entretableros-app .
+docker run -d -p 8080:80 entretableros-app
+```
 
-### Principales mejoras respecto a la versión 1.0:
+Accede desde:  
+👉 `http://localhost:8080`
 
-- Migración a Angular con estructura basada en componentes.
-- Incorporación de Bootstrap para un diseño responsive más robusto.
-- Manejo de rutas dinámicas (`category/:id`, `user/:id`, etc.).
-- Validaciones de formularios reactivas con feedback visual.
-- Módulo de autenticación y gestión de sesión con LocalStorage.
-- Nuevo foro social (“Tablero Social”) donde los usuarios participan y ganan puntos.
-- Separación de estilos por componente para mejor mantenibilidad.
-- Integración de una base de datos simulada vía archivo JSON.
+---
+
+## ✨ ¿Qué hay de nuevo en la versión 2.0?
+
+- 🔁 Migración completa a Angular con estructura modular
+- ⚙️ Manejo de rutas dinámicas y componentes reutilizables
+- 💾 Simulación de base de datos externa mediante API en GitHub Pages
+- 🧪 Inclusión de pruebas con Jasmine
+- 🐳 Dockerización para facilitar despliegue
+- 🎨 Mejoras visuales con Bootstrap y estilo moderno
+- 🚫 Funciones de edición restringidas a usuarios con rol `admin`
+
+---
+
+## 📎 Recursos del proyecto
+
+- 🔗 [Repositorio GitHub App Angular](https://github.com/vanesuazou/EntreTableros)
+- 🔗 [API en GitHub Pages](https://vanesuazou.github.io/EntreTableros_API/)
+- 🎬 Video demostrativo en Kaltura (agregar el link cuando lo tengas)
+- 📌 [Tablero Trello](https://trello.com/b/tu-tablero) (agregar tu link)
+
+---
+
+## 💡 Notas finales
+
+Este proyecto es una simulación educativa desarrollada para la asignatura **Desarrollo Full Stack II**, orientada al consumo de API REST, gestión de componentes, y despliegue en contenedores.  
+No incluye backend real, por lo que las acciones como editar o agregar juegos no persisten.
+
+---

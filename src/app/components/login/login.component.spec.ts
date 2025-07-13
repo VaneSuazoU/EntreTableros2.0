@@ -1,25 +1,44 @@
-import { render, screen, fireEvent } from '@testing-library/angular';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 describe('LoginComponent', () => {
-  it('debería mostrar error si el usuario no existe', async () => {
-    const { fixture } = await render(LoginComponent, {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
+  let routerSpy = { navigate: jasmine.createSpy('navigate') };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [LoginComponent],
       imports: [FormsModule],
       providers: [
-        {
-          provide: Router,
-          useValue: { navigate: jasmine.createSpy('navigate') }
-        }
+        { provide: Router, useValue: routerSpy }
       ]
-    });
+    }).compileComponents();
 
-    const btn = screen.getByText('Iniciar Sesión');
-    fireEvent.click(btn);
-
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const alert = await screen.findByText(/credenciales/i);
-    expect(alert).toBeTruthy();
+  });
+
+  it('debería crearse correctamente', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('debería iniciar sesión con credenciales válidas y redirigir', () => {
+    component.correo = 'admin@entre.cl';
+    component.contrasena = 'Admin123!';
+
+    component.iniciarSesion();
+
+    const sesion = JSON.parse(localStorage.getItem('usuario')!);
+    expect(sesion).toBeTruthy();
+    expect(sesion.rol).toBe('admin');
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  afterEach(() => {
+    localStorage.clear(); // limpia sesión después de cada prueba
   });
 });

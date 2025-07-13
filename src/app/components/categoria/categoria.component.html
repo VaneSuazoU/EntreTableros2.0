@@ -2,6 +2,58 @@
   <h2 class="mb-4">Juegos {{ categoria | titlecase }}</h2>
 </div>
 
+<!-- Botón "Agregar juego" visible solo para admin -->
+<div *ngIf="esAdmin && !mostrarFormulario" class="text-center mb-3">
+  <button class="btn btn-success" (click)="agregarJuego()">➕ Agregar Juego</button>
+</div>
+
+
+<!-- Formulario para agregar/editar juego -->
+<div *ngIf="mostrarFormulario" class="formulario-juego">
+  <!-- 🚨 Mensaje aclaratorio -->
+  <div class="alert alert-info text-center small mb-3">
+    Esta funcionalidad es solo una simulación local de edición/creación (sin conexión real a backend).
+  </div>
+  <h4>{{ modoEdicion ? 'Editar Juego' : 'Agregar Nuevo Juego' }}</h4>
+  <form (ngSubmit)="modoEdicion ? guardarEdicion() : guardarNuevoJuego()">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="juegoActual.nombre" name="nombre" class="form-control"
+        placeholder="Nombre del juego" required />
+    </div>
+    <div class="form-group">
+      <input type="number" [(ngModel)]="juegoActual.precio" name="precio" class="form-control" placeholder="Precio"
+        required />
+    </div>
+    <div class="form-group">
+      <textarea [(ngModel)]="juegoActual.descripcion" name="descripcion" class="form-control"
+        placeholder="Descripción"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="juegoActual.imagen" name="imagen" class="form-control"
+        placeholder="Ruta imagen (ej: games/catan.png)" />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="juegoActual.edad" name="edad" class="form-control"
+        placeholder="Edad recomendada (ej: +8)" />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="juegoActual.duracion" name="duracion" class="form-control"
+        placeholder="Duración (ej: 30-60)" />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="juegoActual.jugadores" name="jugadores" class="form-control"
+        placeholder="Jugadores (ej: 2-4)" />
+    </div>
+    <div class="form-group text-center mt-3">
+      <button type="submit" class="btn btn-success me-2">
+        {{ modoEdicion ? 'Guardar Cambios' : 'Agregar Juego' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="resetFormulario()">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+<!-- Lista de juegos -->
 <div class="categoria-container">
   <div class="juegos-grid">
     <div class="juego-card" *ngFor="let juego of juegos">
@@ -10,17 +62,24 @@
       <p>{{ juego.descripcion }}</p>
       <p><strong>Precio: </strong> {{ juego.precio | currency: 'CLP' : 'symbol-narrow' }}</p>
       <div class="juego-info">
-        <span>+{{ juego.edad }} Edad</span>
+        <span>{{ juego.edad }} Edad</span>
         <span>{{ juego.duracion }} Min</span>
         <span>{{ juego.jugadores }} Jugadores</span>
       </div>
+
+      <!-- Botones Editar / Eliminar (solo admin) -->
+      <div class="juego-actions mt-2" *ngIf="esAdmin">
+        <button class="btn btn-sm btn-outline-primary me-1" (click)="editarJuego(juego)">🖉</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="eliminarJuego(juego.id)">🗑</button>
+      </div>
     </div>
   </div>
-
-  <button class="btn-volver" (click)="volver()">← Volver</button>
 </div>
 
+<!-- Botón volver -->
+<button class="btn-volver" (click)="volver()">← Volver</button>
 
+<!-- Mensaje si no hay juegos -->
 <div *ngIf="juegos.length === 0" class="alert alert-warning text-center mt-4">
   No hay juegos disponibles en esta categoría.
 </div>
