@@ -6,8 +6,8 @@
       <div class="col-md-6">
 
         <div class="mb-3">
-          <label>Nombre completo</label>
-          <input type="text" class="form-control"
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" type="text" class="form-control"
             name="nombre"
             [(ngModel)]="usuario.nombre"
             required />
@@ -17,8 +17,8 @@
         </div>
 
         <div class="mb-3">
-          <label>Correo electrónico</label>
-          <input type="email" class="form-control"
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" type="email" class="form-control"
             name="email"
             [(ngModel)]="usuario.email"
             required
@@ -29,9 +29,9 @@
         </div>
 
         <div class="mb-3">
-          <label>Contraseña</label>
+          <label for="contrsena">Contraseña</label>
           <div class="input-group">
-            <input [type]="verPassword ? 'text' : 'password'"
+            <input id="contrasena" [type]="verPassword ? 'text' : 'password'"
               class="form-control"
               name="password"
               [(ngModel)]="usuario.password"
@@ -49,8 +49,8 @@
         </div>
 
         <div class="mb-3">
-          <label>Dirección de despacho (opcional)</label>
-          <input type="text" class="form-control" name="direccion" [(ngModel)]="usuario.direccion" />
+          <label for="direccion">Dirección de despacho (opcional)</label>
+          <input id="direccion" type="text" class="form-control" name="direccion" [(ngModel)]="usuario.direccion" />
         </div>
 
       </div>
@@ -59,8 +59,8 @@
       <div class="col-md-6">
 
         <div class="mb-3">
-          <label>Nombre de usuario</label>
-          <input type="text" class="form-control"
+          <label for="user">Nombre de usuario</label>
+          <input id="user"type="text" class="form-control"
             name="username"
             [(ngModel)]="usuario.username"
             required />
@@ -70,8 +70,8 @@
         </div>
 
         <div class="mb-3">
-          <label>Fecha de nacimiento</label>
-          <input type="date" class="form-control"
+          <label for="nacimiento" >Fecha de nacimiento</label>
+          <input id="nacimiento" type="date" class="form-control"
             name="nacimiento"
             [(ngModel)]="usuario.nacimiento"
             required />
@@ -81,9 +81,9 @@
         </div>
 
         <div class="mb-3">
-          <label>Repetir contraseña</label>
+          <label for="repetir">Repetir contraseña</label>
           <div class="input-group">
-            <input [type]="verRepeat ? 'text' : 'password'"
+            <input id="repetir" [type]="verRepeat ? 'text' : 'password'"
               class="form-control"
               name="repetir"
               [(ngModel)]="usuario.repetir"
