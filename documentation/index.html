@@ -83,60 +83,84 @@
                    <div class="content-data">
 
 <h1>🌌 EntreTableros 2.0 - Tienda de Juegos de Mesa</h1>
-<p><strong>EntreTableros</strong> es una tienda ficticia de juegos de mesa con un diseño galáctico, moderno y amigable. Esta versión 2.0 fue desarrollada con <strong>Angular</strong>, integrando funcionalidades interactivas como registro de usuarios, edición de perfil, categorización dinámica de juegos y una sección social donde los usuarios pueden acumular puntos de participación.</p>
+<p><strong>EntreTableros</strong> es una tienda ficticia de juegos de mesa con un diseño galáctico, moderno y amigable.<br>Esta versión 2.0 fue desarrollada con <strong>Angular</strong>, integrando funcionalidades interactivas como registro de usuarios, edición de perfil, categorización dinámica de juegos, y una sección social donde los usuarios pueden acumular puntos de participación.</p>
+<hr>
 <h2>🚀 Tecnologías Utilizadas</h2>
 <ul>
 <li>Angular 16+</li>
 <li>TypeScript</li>
 <li>Bootstrap 5</li>
-<li>HTML5 &amp; CSS3 (con estilos separados por componente)</li>
-<li>JSON para la carga dinámica de productos</li>
-<li>LocalStorage para persistencia de sesión</li>
-<li><a href="https://angular.dev/tools/cli">Angular CLI</a></li>
+<li>HTML5 &amp; CSS3 (estilos separados por componente)</li>
+<li>JSON publicado en GitHub Pages como API simulada</li>
+<li>LocalStorage para gestión de sesión</li>
+<li>Docker para contenerización</li>
+<li>Jasmine &amp; Karma para pruebas unitarias</li>
 </ul>
+<hr>
 <h2>🧩 Estructura del Proyecto</h2>
 <ul>
-<li><code>src/app/components</code>: Componentes modulares como <code>navbar</code>, <code>category</code>, <code>login</code>, <code>register</code>, <code>profile</code>, <code>social-board</code>, etc.</li>
-<li><code>assets/data/games.json</code>: Base de datos simulada con los juegos.</li>
-<li><code>styles</code>: Estilos generales del sitio y estilos específicos por componente.</li>
-<li><code>app-routing.module.ts</code>: Configuración de rutas.</li>
+<li><code>src/app/components</code>: Componentes como <code>navbar</code>, <code>categoria</code>, <code>login</code>, <code>register</code>, <code>perfil</code>, <code>foro</code>, etc.</li>
+<li><code>public/games.json</code>: Fuente de datos simulada (cargada desde GitHub Pages)</li>
+<li><code>styles.css</code>: Estilos generales del sitio</li>
+<li><code>Dockerfile</code>: Script para construir la app y ejecutarla vía NGINX</li>
+<li><code>app.routes.ts</code>: Configuración de rutas con protección por roles</li>
 </ul>
-<h2>🛠️ Instalación y ejecución local</h2>
-<ol>
-<li><p>Clona el repositorio:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git clone https://github.com/tu-usuario/entre-tableros.git
-cd entre-tableros</code></pre></div></li>
-<li><p>Instala las dependencias:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm install</code></pre></div></li>
-<li><p>Inicia el servidor de desarrollo:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng serve</code></pre></div></li>
-<li><p>Accede a la aplicación desde el navegador:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">http://localhost:4200/</code></pre></div></li>
-</ol>
+<hr>
 <h2>📦 Funcionalidades principales</h2>
 <ul>
-<li>🧑 Registro e inicio de sesión con validaciones.</li>
-<li>✍️ Edición de perfil con campos como nombre, dirección y fecha de nacimiento.</li>
-<li>🎲 Visualización de juegos por categorías: Familiares, Estratégicos, Infantiles y Cartas.</li>
-<li>🔎 Filtro por categoría y detalles de cada juego.</li>
-<li>🗨️ Foro social tipo &quot;Tablero Social&quot;.</li>
-<li>🎁 Sistema de puntos y beneficios para usuarios activos.</li>
+<li>🧑 Registro e inicio de sesión con validaciones básicas</li>
+<li>👤 Edición de perfil con campos personales</li>
+<li>🎲 Visualización de juegos por categorías: Familiares, Estratégicos, Infantiles y Party Games</li>
+<li>✏️ Simulación de creación y edición de juegos para usuarios con rol <code>admin</code></li>
+<li>🗨️ Foro social con sistema de participación (puntos)</li>
+<li>🔐 Control de acceso y rutas protegidas</li>
+<li>🔍 Navegación dinámica con parámetros en rutas</li>
 </ul>
-<h2>📁 Datos simulados</h2>
-<p>Los juegos se cargan desde un archivo JSON local ubicado en:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">public/games/games.json</code></pre></div><h2>✨ Versión 2.0 - ¿Qué hay de nuevo?</h2>
-<p>Esta es la <strong>versión 2.0</strong> de <em>EntreTableros</em>, completamente reestructurada utilizando el framework <strong>Angular</strong>. A diferencia de la primera versión (desarrollada con HTML, CSS y JavaScript puro), esta nueva implementación permite una mayor escalabilidad, reutilización de componentes y navegación fluida gracias al uso de <em>routing</em> y <em>binding</em> de datos.</p>
-<h3>Principales mejoras respecto a la versión 1.0:</h3>
+<hr>
+<h2>📁 Datos simulados (API)</h2>
+<p>Los juegos se obtienen desde un archivo JSON publicado como API en GitHub Pages:<br>🔗 <a href="https://vanesuazou.github.io/EntreTableros_API/data.json">https://vanesuazou.github.io/EntreTableros_API/data.json</a></p>
+<hr>
+<h2>🧪 Pruebas</h2>
+<p>Se implementó una prueba funcional real para el componente <code>LoginComponent</code>, validando el flujo de autenticación con credenciales válidas y redirección.<br>Las pruebas se ejecutan con:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng test</code></pre></div><hr>
+<h2>🐳 Dockerización</h2>
+<p>La app puede ejecutarse en un contenedor Docker con NGINX como servidor web.</p>
+<h3>📄 Dockerfile</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-Dockerfile"># Etapa 1: Build Angular
+FROM node:18-alpine as build
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+# Etapa 2: Servidor NGINX
+FROM nginx:alpine
+COPY --from=build /app/dist/entre-tableros /usr/share/nginx/html</code></pre></div><h3>▶️ Ejecución</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">docker build -t entretableros-app .
+docker run -d -p 8080:80 entretableros-app</code></pre></div><p>Accede desde:<br>👉 <code>http://localhost:8080</code></p>
+<hr>
+<h2>✨ ¿Qué hay de nuevo en la versión 2.0?</h2>
 <ul>
-<li>Migración a Angular con estructura basada en componentes.</li>
-<li>Incorporación de Bootstrap para un diseño responsive más robusto.</li>
-<li>Manejo de rutas dinámicas (<code>category/:id</code>, <code>user/:id</code>, etc.).</li>
-<li>Validaciones de formularios reactivas con feedback visual.</li>
-<li>Módulo de autenticación y gestión de sesión con LocalStorage.</li>
-<li>Nuevo foro social (“Tablero Social”) donde los usuarios participan y ganan puntos.</li>
-<li>Separación de estilos por componente para mejor mantenibilidad.</li>
-<li>Integración de una base de datos simulada vía archivo JSON.</li>
+<li>🔁 Migración completa a Angular con estructura modular</li>
+<li>⚙️ Manejo de rutas dinámicas y componentes reutilizables</li>
+<li>💾 Simulación de base de datos externa mediante API en GitHub Pages</li>
+<li>🧪 Inclusión de pruebas con Jasmine</li>
+<li>🐳 Dockerización para facilitar despliegue</li>
+<li>🎨 Mejoras visuales con Bootstrap y estilo moderno</li>
+<li>🚫 Funciones de edición restringidas a usuarios con rol <code>admin</code></li>
 </ul>
+<hr>
+<h2>📎 Recursos del proyecto</h2>
+<ul>
+<li>🔗 <a href="https://github.com/vanesuazou/EntreTableros">Repositorio GitHub App Angular</a></li>
+<li>🔗 <a href="https://vanesuazou.github.io/EntreTableros_API/">API en GitHub Pages</a></li>
+<li>🎬 Video demostrativo en Kaltura (agregar el link cuando lo tengas)</li>
+<li>📌 <a href="https://trello.com/b/tu-tablero">Tablero Trello</a> (agregar tu link)</li>
+</ul>
+<hr>
+<h2>💡 Notas finales</h2>
+<p>Este proyecto es una simulación educativa desarrollada para la asignatura <strong>Desarrollo Full Stack II</strong>, orientada al consumo de API REST, gestión de componentes, y despliegue en contenedores.<br>No incluye backend real, por lo que las acciones como editar o agregar juegos no persisten.</p>
+<hr>
 
 
 
